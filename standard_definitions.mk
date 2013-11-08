@@ -1,12 +1,12 @@
 
 ####compiler####
-CC=/usr/bin/gcc
+CC=/mnt/sda6/Stuff/git/lazyux/sysroot/bin/musl-gcc
 
 ####compilerflags####
-COMPFLAGS=-pipe -Os -mtune=i386 -Wall -D_BSD_SOURCE -D_GNU_SOURCE -D__KERNEL_STRICT_NAMES  \
+COMPFLAGS=-pipe -fPIC -Os -Wall -D_BSD_SOURCE -D_GNU_SOURCE -D__KERNEL_STRICT_NAMES  \
 -fno-strength-reduce -nodefaultlibs -fno-strict-aliasing \
 -ffunction-sections -fdata-sections \
--I/usr/include -I.
+-I.
 
 ####extensions####
 DPMS=-DDPMSExtension
@@ -41,7 +41,7 @@ SERVER_LOCK=-DSERVER_LOCK
 #+1Kb
 SMART_SCHEDULE=-DSMART_SCHEDULE
 #+0Kb
-USE_RGB_TXT=-DUSE_RGB_TXT
+#USE_RGB_TXT=-DUSE_RGB_TXT
 #+10Kb
 XDMCP=-DXDMCP
 PANORAMIX=-DPANORAMIX
@@ -54,11 +54,12 @@ XF86BIGFONT=-DXF86BIGFONT
 #+1Kb
 BIGREQS=-DDBIGREQS
 
+#-DRGB_DB=\"/usr/share/X11/rgb.txt\" \
+
 #all deactivated creates 543K Xvesa
 #all activated creates 728K Xvesa
 COMMONDEFS=$(COMPFLAGS) \
 -DNOERROR \
--D__i386__ \
 -Dlinux \
 -D_POSIX_SOURCE \
 -D_BSD_SOURCE \
@@ -71,8 +72,7 @@ COMMONDEFS=$(COMPFLAGS) \
 -DNDEBUG \
 -DNARROWPROTO \
 -DFUNCPROTO=15 \
--DCOMPILEDDEFAULTFONTPATH=\"/usr/X11R7/lib/X11/fonts/misc/\" \
--DRGB_DB=\"/usr/X11R7/lib/X11/rgb\" \
+-DCOMPILEDDEFAULTFONTPATH=\"/usr/share/fonts/misc/,/usr/share/fonts/truetype/,/usr/share/fonts/X11/100dpi/,/usr/share/fonts/X11/75dpi/\" \
 -D_POSIX_C_SOURCE=2 \
 $(FONTCACHE) \
 $(XTEST) \
@@ -99,14 +99,12 @@ $(XF86BIGFONT) \
 $(BIGREQS) \
 -D__KERNEL_STRICT_NAMES
 
-LDFLAGS=-static -Wl,--gc-sections,--sort-common,-s
+LDFLAGS=-fPIC -static -Wl,--gc-sections,--sort-common,-s
 
-LINKDIR=-L/usr/lib
+LINKDIR=-L/mnt/sda6/Stuff/git/lazyux/sysroot/lib
 
-LINKDIR=-L/usr/lib
+LIBDIR=/mnt/sda6/Stuff/git/lazyux/sysroot/lib
 
-LIBDIR=/usr/lib
-
-INCDIR=/usr/include
+INCDIR=/mnt/sda6/Stuff/git/lazyux/sysroot/usr/include
 
 
