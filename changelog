@@ -78,8 +78,12 @@
 		    is now reported but abiword still wont work.
 		    *changed XKB_IN_SERVER=-DXKB_IN_SERVER to XKB_IN_SERVER=-DXKB
 		    in standard_definitions.mk. and deactivated as XKB does not compile.
-		    *removed some warnings dix/dispatch, dix/events.c, os/connection.c
-		    and hw/kdrive/vesa/vbe.c
+		    *removed some warnings dix/dispatch, dix/events.c, os/connection.c, hw/kdrive/vesa/vbe.c
 		    *revised os/Makefile to respect settings in standard_definitions.mk
-		    *revised Xext/Makefile to respect settings in 
-		    standard_definitions.mk
+		    *revised Xext/Makefile to respect settings in standard_definitions.mk
+20130212:	*XF86BIGFONT test added xf86bigfont.h, font.h, xf86bigfstr.h 
+			from X11R-6.8.2.
+			*LBX test added lbxstr.h, lbxdeltastr.h, lbxopts.h, lbxtags.h
+			from X11R-6.8.2 - but need lbx so not followed.
+			*various reconstructs in standard_definitions.mk...
+	

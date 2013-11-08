@@ -1,49 +1,58 @@
 
 ####compiler####
-#CC=/usr/bin/gcc
-CC=/opt/musl/bin/musl-gcc
+CC=/usr/bin/gcc
 
 ####compilerflags####
 COMPFLAGS=-pipe -Os -mtune=i386 -Wall -D_BSD_SOURCE -D_GNU_SOURCE -D__KERNEL_STRICT_NAMES  \
 -fno-strength-reduce -nodefaultlibs -fno-strict-aliasing \
 -ffunction-sections -fdata-sections \
--I/opt/musl/include -I.
+-I/usr/include -I.
 
 ####extensions####
-#DPMS=-DDPMSExtension
-#SCREENSAVER=-DSCREENSAVER
+DPMS=-DDPMSExtension
+SCREENSAVER=-DSCREENSAVER
+#+6Kb
 MIT-SHM=-DMITSHM
 RENDER=-DRENDER
-#SHAPE=-DSHAPE		#FIXME:if not defined dont define PANORAMIX=-DPANORAMIX
-#SYNC=-DXSYNC
-#TOG-CUP=-DTOGCUP
+#FIXME SHAPE:if not defined dont define PANORAMIX=-DPANORAMIX
+SHAPE=-DSHAPE
+SYNC=-DXSYNC
+TOG-CUP=-DTOGCUP
+#+1Kb
 XCMISC=-DXCMISC
-#XTEST=-DXTEST
-#XTRAP=-DXTRAP
+XTEST=-DXTEST
+XTRAP=-DXTRAP
 XV=-DXV
-#RANDR=-DRANDR
-#XRECORD=-DXRECORD
-FONTCACHE=-DNOFONTSERVERACCESS	# -DFONTCACHE or -DNOFONTSERVERACCESS
+RANDR=-DRANDR
+XRECORD=-DXRECORD
+#+10Kb
+XDMCP=-DXDMCP
+# -DFONTCACHE or -DNOFONTSERVERACCESS
+FONTCACHE=-DFONTCACHE
 
 ####not working####
-#XINPUT=-DXINPUT	#NOT WORKING!
-#XKB=-DXKB/XKB_IN_SERVER=-DXKB	#NOT WORKING!
-
+#XINPUT=-DXINPUT
+#XKB=-DXKB/XKB_IN_SERVER=-DXKB
+#LBX=-DLBX
 
 ####others####
-#SERVER_LOCK=-DSERVER_LOCK
-#SMART_SCHEDULE=-DSMART_SCHEDULE
+#+2Kb
+SERVER_LOCK=-DSERVER_LOCK
+#+1Kb
+SMART_SCHEDULE=-DSMART_SCHEDULE
+#+0Kb
 USE_RGB_TXT=-DUSE_RGB_TXT
-#XDMCP=-DXDMCP
-#PANORAMIX=-DPANORAMIX
-
-####where to look for fonts/colors####
-# Puppy:
-#FONTPATH=/usr/X11R7/lib/X11/fonts/misc/
-#RGB=/usr/X11R7/lib/X11/rgb
-# Debian:
-FONTPATH=/usr/share/fonts/X11/misc/
-RGB=/usr/share/X11/rgb
+#+10Kb
+XDMCP=-DXDMCP
+PANORAMIX=-DPANORAMIX
+#+0Kb (unused?)
+X_LOCALE=-DX_LOCALE
+#+1Kb
+PIXPRIV=-DPIXPRIV
+#+3Kb
+XF86BIGFONT=-DXF86BIGFONT
+#+1Kb
+BIGREQS=-DDBIGREQS
 
 #all deactivated creates 543K Xvesa
 #all activated creates 728K Xvesa
@@ -56,19 +65,17 @@ COMMONDEFS=$(COMPFLAGS) \
 -DTOSHIBA_SMM \
 -D_SVID_SOURCE \
 -D_GNU_SOURCE \
--DX_LOCALE \
 -DKDRIVESERVER \
 -DGCCUSESGAS \
 -DDDXOSINIT \
-$(FONTCACHE) \
 -DNDEBUG \
 -DNARROWPROTO \
--DPIXPRIV \
-$(XTEST) \
 -DFUNCPROTO=15 \
--DCOMPILEDDEFAULTFONTPATH=\"${FONTPATH}\" \
--DRGB_DB=\"${RGB}\" \
+-DCOMPILEDDEFAULTFONTPATH=\"/usr/X11R7/lib/X11/fonts/misc/\" \
+-DRGB_DB=\"/usr/X11R7/lib/X11/rgb\" \
 -D_POSIX_C_SOURCE=2 \
+$(FONTCACHE) \
+$(XTEST) \
 $(DPMS) \
 $(SYNC) \
 $(PANORAMIX) \
@@ -83,20 +90,23 @@ $(XCMISC) \
 $(XDMCP) \
 $(XTRAP) \
 $(XV) \
-$(XINPUT) \
-$(XKB) \
-$(XKB_IN_SERVER) \
 $(RANDR) \
 $(XRECORD) \
 $(USE_RGB_TXT) \
+$(PIXPRIV) \
+$(X_LOCALE) \
+$(XF86BIGFONT) \
+$(BIGREQS) \
 -D__KERNEL_STRICT_NAMES
 
 LDFLAGS=-static -Wl,--gc-sections,--sort-common,-s
 
-LINKDIR=-L/opt/musl/lib
+LINKDIR=-L/usr/lib
 
-LIBDIR=/opt/musl/lib
+LINKDIR=-L/usr/lib
 
-INCDIR=/opt/musl/include
+LIBDIR=/usr/lib
+
+INCDIR=/usr/include
 
 

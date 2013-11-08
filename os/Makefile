@@ -1,6 +1,6 @@
 include	../standard_definitions.mk
-#-DXSYNC -DFONTCACHE -DMITMISC -DXTRAP -DXCMISC
-DEFS=-DXSERV_t -DTRANS_SERVER -DUNIXCONN -DTCPCONN -DHAS_FCHOWN -DDDXOSINIT -DADMPATH=\"/usr/adm/X\%smsgs\" -DBIGREQS 
+#-DXSYNC -DFONTCACHE -DMITMISC -DXTRAP -DXCMISC  -DBIGREQS 
+DEFS=-DXSERV_t -DTRANS_SERVER -DUNIXCONN -DTCPCONN -DHAS_FCHOWN -DDDXOSINIT -DADMPATH=\"/usr/adm/X\%smsgs\"
 
 CFLAGS= -I../include -I../common -I../render -I../Xext -I../lbx -I../fb -I../mi -I../miext/shadow -I../hw/kdrive -I../miext/layer $(COMMONDEFS) $(DEFS)
 
