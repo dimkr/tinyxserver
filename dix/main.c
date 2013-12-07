@@ -413,7 +413,7 @@ int main(int argc, char *argv[], char	*envp[]) {
 	}
 	if (!SetDefaultFont(defaultTextFont))
 	    FatalError("could not open default font '%s'", defaultTextFont);
-	if (!(rootCursor = CreateRootCursor(defaultCursorFont, 0)))
+	if (!(rootCursor = CreateRootCursor(defaultCursorFont, 68)))
 	    FatalError("could not open default cursor font '%s'",
 		       defaultCursorFont);
 #ifdef DPMSExtension
