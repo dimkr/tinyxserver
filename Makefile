@@ -59,7 +59,7 @@ install:
 	install -D -m 644 init/xinit.1 $(DESTDIR)/$(MANDIR)/man1/xinit.1
 	install -D -m 644 README $(DESTDIR)/$(DOCDIR)/tinyxserver/README
 	install -m 644 changelog $(DESTDIR)/$(DOCDIR)/tinyxserver/changelog
-	install -m 644 init/README.upstream $(DESTDIR)/$(DOCDIR)/xinit/README
+	install -D -m 644 init/README.upstream $(DESTDIR)/$(DOCDIR)/xinit/README
 	install -m 644 init/ChangeLog $(DESTDIR)/$(DOCDIR)/xinit/ChangeLog
 	install -m 644 init/AUTHORS $(DESTDIR)/$(DOCDIR)/xinit/AUTHORS
 	install -m 644 init/COPYING $(DESTDIR)/$(DOCDIR)/xinit/COPYING
