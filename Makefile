@@ -55,7 +55,8 @@ install:
 	install -D -m 755 Xfbdev $(DESTDIR)/$(BINDIR)/Xfbdev
 	install -m 755 xinit $(DESTDIR)/$(BINDIR)/xinit
 	ln -s Xfbdev $(DESTDIR)/$(BINDIR)/X
-	cd fonts; for i in *.pcf fonts.alias; do install -D -m 644 $$i $(DESTDIR)/$(FONTDIR)/misc/$$i; done; cd ..
+	for i in misc truetype 100dpi 75dpi cyrillic; do install -d -m 755 $$i $(DESTDIR)/$(FONTDIR)/$$i; done
+	cd fonts; for i in *.pcf fonts.alias; do install -m 644 $$i $(DESTDIR)/$(FONTDIR)/misc/$$i; done; cd ..
 	install -D -m 644 init/xinit.1 $(DESTDIR)/$(MANDIR)/man1/xinit.1
 	install -D -m 644 README $(DESTDIR)/$(DOCDIR)/tinyxserver/README
 	install -m 644 changelog $(DESTDIR)/$(DOCDIR)/tinyxserver/changelog
