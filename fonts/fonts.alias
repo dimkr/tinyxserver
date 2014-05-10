@@ -26,22 +26,6 @@ nil2         -misc-nil-medium-r-normal--2-20-75-75-c-10-misc-fontspecific
 heb6x13      -misc-fixed-medium-r-semicondensed--13-120-75-75-c-60-iso8859-8
 heb8x13      -misc-fixed-medium-r-normal--13-120-75-75-c-80-iso8859-8
 
-k14          -misc-fixed-medium-r-normal--14-*-*-*-*-*-jisx0208.1983-0
-a14          -misc-fixed-medium-r-normal--14-*-*-*-*-*-iso8859-1
-r14          -misc-fixed-medium-r-normal--14-*-*-*-*-*-jisx0201.1976-0
-rk14         -misc-fixed-medium-r-normal--14-*-*-*-*-*-jisx0201.1976-0
-r16          -sony-fixed-medium-r-normal--16-*-*-*-*-*-jisx0201.1976-0
-rk16         -sony-fixed-medium-r-normal--16-*-*-*-*-*-jisx0201.1976-0
-r24          -sony-fixed-medium-r-normal--24-*-*-*-*-*-jisx0201.1976-0
-rk24         -sony-fixed-medium-r-normal--24-*-*-*-*-*-jisx0201.1976-0
-kana14       -misc-fixed-medium-r-normal--14-*-*-*-*-*-jisx0201.1976-0
-8x16kana     -sony-fixed-medium-r-normal--16-120-100-100-c-80-jisx0201.1976-0
-8x16romankana -sony-fixed-medium-r-normal--16-120-100-100-c-80-jisx0201.1976-0
-12x24kana     -sony-fixed-medium-r-normal--24-170-100-100-c-120-jisx0201.1976-0
-12x24romankana -sony-fixed-medium-r-normal--24-170-100-100-c-120-jisx0201.1976-0
-kanji16      -jis-fixed-medium-r-normal--16-*-*-*-*-*-jisx0208.1983-0
-kanji24      -jis-fixed-medium-r-normal--24-*-*-*-*-*-jisx0208.1983-0
-
 hanzigb16st "-isas-song ti-medium-r-normal--16-160-72-72-c-160-gb2312.1980-0"
 hanzigb24st "-isas-song ti-medium-r-normal--24-240-72-72-c-240-gb2312.1980-0"
 hanzigb16fs "-isas-fangsong ti-medium-r-normal--16-160-72-72-c-160-gb2312.1980-0"
