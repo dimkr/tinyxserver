@@ -6,7 +6,8 @@ DEFS= -DNOERROR
 CFLAGS= -I.. -I../.. -I../../.. -I./include -I./common -I./render -I./Xext -I./lbx -I./fb -I./mi -I./miext/shadow -I./hw/kdrive -I./miext/layer -I./os $(COMMONDEFS) $(DEFS)
 
 OBJS=
-all:
+
+common:
 	cd render; make
 	cd dix; make
 	cd os; make
@@ -17,17 +18,25 @@ all:
 	cd hw/kdrive; make
 	cd hw/kdrive/linux; make
 	cd fb; make
-	#cd hw/kdrive/vesa; make
 	cd miext/shadow; make
 	cd miext/layer; make
 	cd randr; make
-	cd hw/kdrive/fbdev; make
 	cd record; make
-	cd init; make
 	cd fonts; make
-	#$(CC) $(CFLAGs) $(DEFS) $(LDFLAGS) -o Xvesa dix/libdix.a os/libos.a hw/kdrive/vesa/libvesa.a miext/layer/liblayer.a hw/kdrive/libkdrive.a hw/kdrive/linux/liblinux.a miext/shadow/libshadow.a fb/libfb.a mi/libmi.a Xext/libext.a Xext/extmod/libextmod.a XTrap/libxtrap.a randr/librandr.a render/librender.a record/librecord.a $(LINKDIR) -lXfont -lXinerama -lX11 -lXdmcp -lz -lm
+
+Xvesa: common
+	cd hw/kdrive/vesa; make
+	$(CC) $(CFLAGs) $(DEFS) $(LDFLAGS) -o Xvesa dix/libdix.a os/libos.a hw/kdrive/vesa/libvesa.a miext/layer/liblayer.a hw/kdrive/libkdrive.a hw/kdrive/linux/liblinux.a miext/shadow/libshadow.a fb/libfb.a mi/libmi.a Xext/libext.a Xext/extmod/libextmod.a XTrap/libxtrap.a randr/librandr.a render/librender.a record/librecord.a $(LINKDIR) -lXfont -lXinerama -lX11 -lXdmcp -lz -lm
+
+Xfbdev: common
+	cd hw/kdrive/fbdev; make
 	$(CC) $(CFLAGs) $(DEFS) $(LDFLAGS) -o Xfbdev dix/libdix.a os/libos.a hw/kdrive/fbdev/libfbdev.a miext/layer/liblayer.a hw/kdrive/libkdrive.a hw/kdrive/linux/liblinux.a miext/shadow/libshadow.a fb/libfb.a mi/libmi.a Xext/libext.a Xext/extmod/libextmod.a XTrap/libxtrap.a randr/librandr.a render/librender.a record/librecord.a $(LINKDIR) -lXfont -lXinerama -lX11 -lXdmcp -lz -lm
+
+xinit:
+	cd init; make
 	$(CC) $(CFLAGs) $(DEFS) $(LDFLAGS) -o xinit init/xinit.o -lX11
+
+all: Xvesa Xfbdev xinit
 
 clean:
 	cd render; make clean
@@ -48,13 +57,15 @@ clean:
 	cd record; make clean
 	cd init; make clean
 	cd fonts; make clean
-	#rm -f Xvesa
+	rm -f Xvesa
 	rm -f Xfbdev
 	rm -f xinit
+
 install:
-	install -D -m 755 Xfbdev $(DESTDIR)/$(BINDIR)/Xfbdev
+	[ -f Xfbdev ] && install -D -m 4755 Xfbdev $(DESTDIR)/$(BINDIR)/Xfbdev
+	if [ -f Xvesa ]; then install -D -m 4755 Xvesa $(DESTDIR)/$(BINDIR)/Xvesa; fi
 	install -m 755 xinit $(DESTDIR)/$(BINDIR)/xinit
-	ln -s Xfbdev $(DESTDIR)/$(BINDIR)/X
+	[ -f Xvesa ] && ln -s Xvesa $(DESTDIR)/$(BINDIR)/X || ln -s Xfbdev $(DESTDIR)/$(BINDIR)/X
 	for i in misc truetype 100dpi 75dpi cyrillic; do install -d -m 755 $$i $(DESTDIR)/$(FONTDIR)/$$i; done
 	cd fonts; for i in *.pcf fonts.alias; do install -m 644 $$i $(DESTDIR)/$(FONTDIR)/misc/$$i; done; cd ..
 	install -D -m 644 init/xinit.1 $(DESTDIR)/$(MANDIR)/man1/xinit.1
