@@ -509,7 +509,7 @@ KdParseMouse (char *arg)
     mi->name = 0;
     mi->prot = 0;
     mi->emulateMiddleButton = kdEmulateMiddleButton;
-    mi->nbutton = 3;
+    mi->nbutton = 5;
     for (i = 0; i < KD_MAX_BUTTON; i++)
 	mi->map[i] = i + 1;
     
