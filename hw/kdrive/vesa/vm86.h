@@ -51,7 +51,7 @@ THE SOFTWARE.
 #include <unistd.h>
 #include <fcntl.h>
 #include <sys/mman.h>
-#include <sys/vm86.h>
+#include <asm/vm86.h>
 #include <sys/io.h>
 
 #ifdef NOT_IN_X_SERVER
